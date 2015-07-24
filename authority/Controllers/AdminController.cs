@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace authority.Controllers
 {
+    [LoginCheck]
     public class AdminController : Controller
     {
         //
