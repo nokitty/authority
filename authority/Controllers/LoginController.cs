@@ -34,15 +34,17 @@ namespace authority.Controllers
                 {
                     HttpCookie cookie = new HttpCookie("login");
                     var val = Guid.NewGuid().ToString("d");
+                    var expire = DateTime.Now.AddDays(15);
 
-                    DB.SExecuteNonQuery("insert into "+DBTables.UserLoginCookie +"(userid,value) values (?,?)" ,userid,val);
+                    DB.SExecuteNonQuery("insert into "+DBTables.UserLoginCookie +"(userid,value,expire) values (?,?,?)" ,userid,val,expire);
 
-                    cookie.Value = Guid.NewGuid().ToString("d");
-                    cookie.Expires = DateTime.Now.AddDays(15);
+                    cookie.Value = val;
+                    cookie.Expires = expire;
                     cookie.HttpOnly = true;
 
                     Response.SetCookie(cookie);
                 }
+                return Redirect("~/account");
             }
             return View();
         }

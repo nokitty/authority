@@ -8,7 +8,6 @@ namespace authority.Controllers
 {
     public class SignupController : Controller
     {
-
         public ActionResult Index()
         {
             ViewBag.Title = "注册";

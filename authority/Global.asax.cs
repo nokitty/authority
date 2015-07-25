@@ -20,5 +20,21 @@ namespace authority
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Session_Start()
+        {
+            var cookie=Request.Cookies["login"];
+            if(cookie!=null)
+            {
+                var val = cookie.Value;
+                var sql="select userid from "+DBTables.UserLoginCookie+" where value=? and expire>?";
+                var res= DB.SExecuteScalar(sql, val,DateTime.Now);
+                if(res!=null)
+                {
+                    var userid = Convert.ToInt32(res);
+                    Session["user"] = new DBC.User(userid);
+                }
+            }
+        }
     }
 }

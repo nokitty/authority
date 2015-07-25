@@ -39,8 +39,6 @@ using System.Web.Mvc;
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            var result = new ContentResult();
-            result.Content = "请先登录";
-            filterContext.Result = result;
+            filterContext.Result = new RedirectResult("~/login");
         }
     }

@@ -12,7 +12,7 @@ static public class AuthorityHelper
         {
             try
             {
-                var authority = new DBC.Authority("code");
+                var authority = new DBC.Authority(code);
                 var sql = "select value from " + DBTables.RoleAuthority + " where roleid=? and authorityid=?";
                 var res11 = DB.SExecuteScalar(sql, role.ID, authority.ID);
 
