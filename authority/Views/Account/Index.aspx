@@ -12,6 +12,24 @@
             <span class="pull-right"><%=user.Name %></span> 
 
         </div>
+        <h2>这里是用户信息页</h2>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="list-group">
+                    <a class="list-group-item active">基本信息</a>
+                    <a class="list-group-item">举报管理</a>
+                    <a class="list-group-item">悬赏管理</a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div>这里是具体的用户信息</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </asp:Content>

@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage"  MasterPageFile="~/Views/Share/BootstrapFrame.Master" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="body">
+        <div class="container">
+        <h2>后台管理主页</h2>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="list-group">
+                    <a class="list-group-item active" href="/admin/role">角色管理</a>
+                    <a class="list-group-item">用户管理</a>
+                    <a class="list-group-item">举报管理</a>
+                    <a class="list-group-item">咨询管理</a>
+                    <a class="list-group-item">公告管理</a>
+                    <a class="list-group-item">常见问题管理</a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <h3><%=ViewBag.Title2==null?"":ViewBag.Title2 %></h3>
+                <hr />
+                <asp:ContentPlaceHolder runat="server" ID="body"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+    </div>
+</asp:Content>

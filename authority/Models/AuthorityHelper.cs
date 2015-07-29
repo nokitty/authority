@@ -7,7 +7,7 @@ static public class AuthorityHelper
 {
     static public bool Check(DBC.Role role,params string[] codes)
     {
-        var res = false;
+        var res = true;
         foreach (string code in codes)
         {
             try
@@ -16,7 +16,9 @@ static public class AuthorityHelper
                 var sql = "select value from " + DBTables.RoleAuthority + " where roleid=? and authorityid=?";
                 var res11 = DB.SExecuteScalar(sql, role.ID, authority.ID);
 
-                res |= Convert.ToBoolean(res11);
+                res &= Convert.ToBoolean(res11);
+                if (res == false)
+                    break;
             }
             catch { }
         }

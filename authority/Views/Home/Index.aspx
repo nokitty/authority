@@ -5,11 +5,11 @@
 <html>
 <head runat="server">
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>主页</title>
 </head>
 <body>
     <div>
-        
+        <h2>这里是主页</h2>
     </div>
 </body>
 </html>

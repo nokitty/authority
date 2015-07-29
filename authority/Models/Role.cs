@@ -21,6 +21,16 @@ namespace DBC
             Initialize("name=?", name);
         }
 
+        public void SetAuthority(string code,bool value)
+        {
+            var authority = new DBC.Authority(code);
+            var sql1 = "delect from " + DBTables.RoleAuthority + " where roleid=? and authorityid=?";
+            DB.SExecuteNonQuery(sql1);
+
+            var sql2 = "insert into " + DBTables.RoleAuthority + " (roleid,authorityid,value) values (?,?,?)";
+            DB.SExecuteNonQuery(sql2, ID, authority.ID,value);
+        }
+
         public void Initialize(string filter,params object[] args)
         {
             var sql = "select id ,name,description from " + DBTables.Role + " where "+filter;
@@ -43,6 +53,7 @@ namespace DBC
             }
             catch
             {
+                //插入新的行
                 var id = DB.SInsert("insert into " + DBTables.Role + " (name,description) values (?,?)", name,description);
                 return new Role(name);
             }

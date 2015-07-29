@@ -125,7 +125,6 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AdminRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -163,9 +162,10 @@
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\Account\Login.aspx" />
     <Content Include="Views\Account\Regist.aspx" />
+    <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Admin\Login.aspx" />
     <Content Include="Views\Admin\Role.aspx" />
-    <Content Include="Views\Admin\RoleAdd.aspx" />
+    <Content Include="Views\Admin\RoleDetail.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Signup\Index.aspx" />
@@ -194,6 +194,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Share\AdminFrame.Master" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
