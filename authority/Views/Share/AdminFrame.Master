@@ -11,7 +11,7 @@
                     <a class="list-group-item">用户管理</a>
                     <a class="list-group-item">举报管理</a>
                     <a class="list-group-item">咨询管理</a>
-                    <a class="list-group-item">公告管理</a>
+                    <a class="list-group-item" href="/admin/announcement">公告管理</a>
                     <a class="list-group-item">常见问题管理</a>
                 </div>
             </div>

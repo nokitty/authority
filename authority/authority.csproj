@@ -133,11 +133,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\announcement.cs" />
     <Compile Include="Models\Authority.cs" />
     <Compile Include="Models\AuthorityCheck.cs" />
     <Compile Include="Models\AuthorityHelper.cs" />
     <Compile Include="Models\AuthoritySet.cs" />
     <Compile Include="Models\DB.cs" />
+    <Compile Include="Models\DBC.cs" />
     <Compile Include="Models\DBTables.cs" />
     <Compile Include="Models\Tools.cs" />
     <Compile Include="Models\UserAuthorityModuel.cs" />
@@ -168,6 +170,7 @@
     <Content Include="Views\Admin\RoleDetail.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Login\Index.aspx" />
+    <Content Include="Views\Partial1.ascx" />
     <Content Include="Views\Signup\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

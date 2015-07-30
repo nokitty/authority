@@ -12,4 +12,5 @@ static public class DBTables
     public static string Authority = WebConfigurationManager.AppSettings["DBTables.Authority"];
     public static string User = WebConfigurationManager.AppSettings["DBTables.User"];
     public static string UserLoginCookie = WebConfigurationManager.AppSettings["DBTables.UserLoginCookie"];
+    public static string Announcement = WebConfigurationManager.AppSettings["DBTables.Announcement"];
 }

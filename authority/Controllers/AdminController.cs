@@ -18,6 +18,7 @@ namespace authority.Controllers
             return View();
         }
 
+        #region 角色管理
         [AuthorityCheck("Role.Access")]
         public ActionResult Role()
         {            
@@ -47,8 +48,8 @@ namespace authority.Controllers
                 var res = DB.SExecuteReader(sql);
                 foreach (var item in res)
                 {
-                    var code=(string)item[0];
-                    var value= Request.Form[code]
+                    var code = (string)item[0];
+                    //var value = Request.Form[code];
                 }
 
                 return View();
@@ -117,6 +118,43 @@ namespace authority.Controllers
             //后续修改
 
             return View("roledetail");
+        } 
+        #endregion
+
+        #region 公告管理
+
+        public ActionResult Announcement()
+        {
+            return View();
+        } 
+
+        public ActionResult AnnouncementAdd()
+        {
+            string title;
+            string content;
+
+            DBC.Announcement.Create(title, content);
+
+            return View();
         }
+
+        public ActionResult AnnouncementEdit()
+        {
+            int id;
+            if (Request.HttpMethod == "POST")
+            {
+                string title;
+                string content;
+                
+                var a = new DBC.Announcement(id);
+                a.Title = title;
+                a.Content = content;
+            }
+
+
+
+            return View();
+        }
+        #endregion
     }
 }
