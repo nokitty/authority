@@ -130,10 +130,10 @@ namespace authority.Controllers
 
         public ActionResult AnnouncementAdd()
         {
-            string title;
-            string content;
+            //string title;
+            //string content;
 
-            DBC.Announcement.Create(title, content);
+            //DBC.Announcement.Create(title, content);
 
             return View();
         }
