@@ -133,19 +133,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\announcement.cs" />
-    <Compile Include="Models\Authority.cs" />
     <Compile Include="Models\AuthorityCheck.cs" />
     <Compile Include="Models\AuthorityHelper.cs" />
-    <Compile Include="Models\AuthoritySet.cs" />
-    <Compile Include="Models\DB.cs" />
-    <Compile Include="Models\DBC.cs" />
-    <Compile Include="Models\DBTables.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Tools.cs" />
-    <Compile Include="Models\UserAuthorityModuel.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\RoleAuthority.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Share\AdminFrame.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBC\DBC.csproj">
+      <Project>{dc9fdfb9-8d09-4831-8eba-9b87d5138949}</Project>
+      <Name>DBC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

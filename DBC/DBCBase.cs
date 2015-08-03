@@ -14,17 +14,17 @@ namespace DBC
             _tableName = tableName;
         }
 
-        public object SetAttribute(string name,object newValue,object oldValue)
+        public object SetAttribute(string name, object newValue, object oldValue)
         {
             if (newValue == oldValue)
                 return oldValue;
 
-            var sql="update "+_tableName+" set "+name+"=? where id=?";
+            var sql = "update " + _tableName + " set " + name + "=? where id=?";
             DB.SExecuteNonQuery(sql, newValue, ID);
             return newValue;
         }
 
-        protected abstract void Initialize(string filter, params object[] agrs);
+        protected abstract void Initialize(string filter, params object[] args);
 
         public void Delete()
         {

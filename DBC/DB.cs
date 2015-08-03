@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-
 public class DB : IDisposable
 {
     MySqlConnection _connection;
     MySqlTransaction _transaction = null;
-    string ConnectionString = "database=test;server=localhost;user id=root; pwd=123456;charset=utf8";
-    //string ConnectionString = "";
+   public  static string ConnectionString { set; get; }
     public DB(string str = "")
     {
         if (str == "")
@@ -124,5 +122,4 @@ public class DB : IDisposable
         }
     }
 }
-
 

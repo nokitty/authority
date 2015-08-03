@@ -121,6 +121,31 @@ namespace authority.Controllers
         } 
         #endregion
 
+        #region 举报管理
+        public ActionResult Report()
+        {
+            return View();
+        }
+
+        //修改（只能修改审核状态，其他信息不能修改）
+        [HttpGet]
+        public ActionResult ReportEdit(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public  ActionResult ReportEdit(int id,ReportedPersonCheckStates state)
+        {
+            return View();
+        }
+
+        //删除
+        public ActionResult ReportDelete(int id)
+        {
+            return View();
+        }
+        #endregion
+
         #region 公告管理
 
         public ActionResult Announcement()
@@ -140,19 +165,89 @@ namespace authority.Controllers
 
         public ActionResult AnnouncementEdit()
         {
-            int id;
-            if (Request.HttpMethod == "POST")
-            {
-                string title;
-                string content;
+            //int id;
+            //if (Request.HttpMethod == "POST")
+            //{
+            //    string title;
+            //    string content;
                 
-                var a = new DBC.Announcement(id);
-                a.Title = title;
-                a.Content = content;
-            }
+            //    var a = new DBC.Announcement(id);
+            //    a.Title = title;
+            //    a.Content = content;
+            //}
+            return View();
+        }
+        #endregion
 
+        #region 文章管理
+        public ActionResult Article()
+        {
+            return View();
+        }
+        //添加
+        [HttpGet]
+        public ActionResult ArticleAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ArticleAdd(string title,string content,string keywords)
+        {
+            return View();
+        }
+        
+        //修改
+        [HttpGet]
+        public ActionResult ArticleEdit(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ArticleEdit(int id,string title,string content,string keywords)
+        {
+            return View();
+        }
 
+        //删除
+        public ActionResult ArticleDelete(int id)
+        {
+            return View();
+        }
+        #endregion
 
+        #region 常见问题管理
+        public ActionResult QnA()
+        {
+            return View();
+        }
+
+        //添加
+        [HttpGet]
+        public ActionResult QnAAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult QnAAdd(string question,string answer)
+        {
+            return View();
+        }
+
+        //修改
+        [HttpGet]
+        public ActionResult QnAEdit(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult QnAEdit(int id,string question,string answer)
+        {
+            return View();
+        }
+
+        //删除
+        public ActionResult QnADelete(int id)
+        {
             return View();
         }
         #endregion

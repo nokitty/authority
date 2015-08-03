@@ -19,6 +19,8 @@ namespace authority
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            DB.ConnectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["db"].ConnectionString;
         }
 
         protected void Session_Start()
