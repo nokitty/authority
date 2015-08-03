@@ -208,18 +208,30 @@ namespace authority.Controllers
         #region 文章管理
         public ActionResult Article()
         {
+            ViewBag.Title2 = "文章管理";
+            var res = DB.SExecuteReader("select id from article");
+            var list = new List<DBC.Article>();
+            foreach (var item in res)
+            {
+                var id = Convert.ToInt32(item[0]);
+                list.Add(new DBC.Article(id));
+            }
+            ViewBag.list = list;
             return View();
         }
         //添加
         [HttpGet]
         public ActionResult ArticleAdd()
         {
-            return View();
+            ViewBag.Article = true;
+            ViewBag.Title = "文章管理-添加文章";
+            return View("ArticleDetail");
         }
         [HttpPost]
         public ActionResult ArticleAdd(string title,string content,string keywords)
         {
-            return View();
+            DBC.Article.Create(title,content,keywords);
+            return Redirect("~/admin/Article");
         }
         
         //修改

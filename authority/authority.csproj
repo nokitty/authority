@@ -157,6 +157,8 @@
     <Content Include="Views\Account\Regist.aspx" />
     <Content Include="Views\Admin\Announcement.aspx" />
     <Content Include="Views\Admin\Antwrite.aspx" />
+    <Content Include="Views\Admin\Article.aspx" />
+    <Content Include="Views\Admin\ArticleDetail.aspx" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Admin\Login.aspx" />
     <Content Include="Views\Admin\QnA.aspx" />
