@@ -8,7 +8,7 @@ namespace DBC
     abstract public class DBCBase
     {
         public int ID { get; set; }
-        protected static string _tableName;
+        protected string _tableName;
         public DBCBase(string tableName)
         {
             _tableName = tableName;

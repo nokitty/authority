@@ -244,6 +244,15 @@ namespace authority.Controllers
         #region 常见问题管理
         public ActionResult QnA()
         {
+            ViewBag.Title2 = "常见问题管理";
+            var res = DB.SExecuteReader("select id from qna");
+            var list = new List<DBC.QnA>();
+            foreach (var item in res)
+            {
+                var id = Convert.ToInt32(item[0]);
+                list.Add(new DBC.QnA(id));
+            }
+            ViewBag.list = list;
             return View();
         }
 
@@ -251,30 +260,44 @@ namespace authority.Controllers
         [HttpGet]
         public ActionResult QnAAdd()
         {
-            return View();
+            ViewBag.QnA = true;
+            ViewBag.Title2 = "常见问题管理-添加问题";
+            return View("qnadetail");
         }
         [HttpPost]
         public ActionResult QnAAdd(string question,string answer)
         {
-            return View();
+            DBC.QnA.Create(question, answer);
+
+            return Redirect("~/admin/QnA");
         }
 
         //修改
         [HttpGet]
         public ActionResult QnAEdit(int id)
         {
-            return View();
+            ViewBag.QnAAdd = true;
+            ViewBag.Title2 = "公告管理-修改公告";
+
+            var ann = new DBC.QnA(id);
+            ViewBag.qna = ann;
+            return View("qnadetail");
         }
         [HttpPost]
         public ActionResult QnAEdit(int id,string question,string answer)
         {
-            return View();
+            var ann = new DBC.QnA(id);
+            ann.Question = question;
+            ann.Answer = answer;
+            return Redirect("~/admin/QnA");
         }
 
         //删除
         public ActionResult QnADelete(int id)
         {
-            return View();
+            var ann = new DBC.QnA(id);
+            ann.Delete();
+            return Redirect("~/admin/QnA");
         }
         #endregion
     }

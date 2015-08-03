@@ -55,7 +55,7 @@ namespace DBC
 
         public static Announcement Create(string title,string content)
         {
-            var sql="insert into "+_tableName+" (title,content,createtime) values (?,?,?)";
+            var sql="insert into "+DBTables.Announcement+" (title,content,createtime) values (?,?,?)";
             var id = DB.SInsert(sql, title, content,DateTime.Now);
             return new Announcement(id);
         }

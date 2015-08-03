@@ -12,4 +12,5 @@
     public static string Area = "area";
     public static string PublicPerson = "public_person";
     public static string ReportedPerson = "upload_person";
+    public static string Person = "person";
 }
