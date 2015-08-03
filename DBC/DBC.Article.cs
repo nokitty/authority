@@ -71,7 +71,7 @@ namespace DBC
 
         public static Article Create(string title, string content, string keywords)
         {
-            var sql = "insert into " + _tableName + " (title,content,keywords,createtime) values (?,?,?,?)";
+            var sql = "insert into " + DBTables.Article + " (title,content,keywords,createtime) values (?,?,?,?)";
             var id = DB.SInsert(sql, title, content, keywords, DateTime.Now);
 
             return new Article(id);

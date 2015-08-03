@@ -60,7 +60,7 @@ namespace DBC
                 string city;
                 GetPosition(cardnum, out province, out city);
 
-                var id = DB.SInsert("insert into " + _tableName + " (name,cardnum,province,city) values (?,?,?,?)", name, CardNumDeal(cardnum), province, city);
+                var id = DB.SInsert("insert into " + DBTables.Person + " (name,cardnum,province,city) values (?,?,?,?)", name, CardNumDeal(cardnum), province, city);
                 return new Person(id);
             }
         }
