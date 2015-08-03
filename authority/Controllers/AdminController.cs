@@ -147,36 +147,62 @@ namespace authority.Controllers
         #endregion
 
         #region 公告管理
-
         public ActionResult Announcement()
         {
+            ViewBag.Title2 = "公告管理";
+            var res = DB.SExecuteReader("select id from announcement");
+            var list = new List<DBC.Announcement>();
+            foreach (var item in res)
+            {
+                var id = Convert.ToInt32(item[0]);
+                list.Add(new DBC.Announcement(id));
+            }
+            ViewBag.list = list;
             return View();
-        } 
+        }
 
+        [HttpGet]
         public ActionResult AnnouncementAdd()
         {
-            //string title;
-            //string content;
+            ViewBag.AnnouncementAdd = true;
+            ViewBag.Title2 = "公告管理-添加公告";
 
-            //DBC.Announcement.Create(title, content);
-
-            return View();
+            return View("antwrite");
         }
-
-        public ActionResult AnnouncementEdit()
+        [HttpPost]
+        public ActionResult AnnouncementAdd(string title, string content)
         {
-            //int id;
-            //if (Request.HttpMethod == "POST")
-            //{
-            //    string title;
-            //    string content;
-                
-            //    var a = new DBC.Announcement(id);
-            //    a.Title = title;
-            //    a.Content = content;
-            //}
-            return View();
+            DBC.Announcement.Create(title, content);
+
+            return Redirect("~/admin/Announcement");
         }
+        [HttpGet]
+        public ActionResult AnnouncementEdit(int id)
+        {
+            ViewBag.AnnouncementAdd = true;
+            ViewBag.Title2 = "公告管理-修改公告";
+
+            var ann = new DBC.Announcement(id);
+            ViewBag.announcement = ann;
+            return View("antwrite");
+        }
+
+        [HttpPost]
+        public ActionResult AnnouncementEdit(int id, string title, string content)
+        {
+            var ann = new DBC.Announcement(id);
+            ann.Title = title;
+            ann.Content = content;
+            return Redirect("~/admin/Announcement");
+        }
+
+        public ActionResult AnnouncementDelete(int id)
+        {
+            var ann = new DBC.Announcement(id);
+            ann.Delete();
+            return Redirect("~/admin/Announcement");
+        }
+     
         #endregion
 
         #region 文章管理

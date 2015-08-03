@@ -36,13 +36,13 @@ namespace DBC
         public Announcement(int id)
             : base(DBTables.Announcement)
         {
-
+            Initialize("id=?", id);
         }
 
-        protected override void Initialize(string filter, params object[] agrs)
+        protected override void Initialize(string filter, params object[] args)
         {
             var sql = "select id,title,content,createtime from " + _tableName + " where " + filter;
-            var res = DB.SExecuteReader(sql);
+            var res = DB.SExecuteReader(sql,args);
             if (res.Count == 0)
                 throw new Exception("无该记录");
 

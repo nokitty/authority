@@ -30,7 +30,7 @@ namespace authority.Controllers
                 }
                 catch
                 {
-                    return Content("改用户名已经被注册");
+                    return Content("该用户名已经被注册");
                 }
             }
             return View();
