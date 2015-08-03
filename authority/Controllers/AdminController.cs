@@ -230,6 +230,7 @@ namespace authority.Controllers
         [HttpPost]
         public ActionResult ArticleAdd(string title,string content,string keywords)
         {
+            content = Server.UrlDecode(content);
             DBC.Article.Create(title,content,keywords);
             return Redirect("~/admin/Article");
         }
@@ -247,6 +248,7 @@ namespace authority.Controllers
         [HttpPost]
         public ActionResult ArticleEdit(int id,string title,string content,string keywords)
         {
+            content = Server.UrlDecode(content);
             var ann = new DBC.Article(id);
             ann.Title = title;
             ann.Content = content;

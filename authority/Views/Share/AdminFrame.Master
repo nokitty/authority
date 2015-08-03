@@ -21,6 +21,9 @@
                 <asp:ContentPlaceHolder runat="server" ID="body"></asp:ContentPlaceHolder>
             </div>
         </div>
-
     </div>
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="script">
+    <asp:ContentPlaceHolder runat="server" ID="script"></asp:ContentPlaceHolder>
 </asp:Content>
