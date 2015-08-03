@@ -224,7 +224,7 @@ namespace authority.Controllers
         public ActionResult ArticleAdd()
         {
             ViewBag.Article = true;
-            ViewBag.Title = "文章管理-添加文章";
+            ViewBag.Title2 = "文章管理-添加文章";
             return View("ArticleDetail");
         }
         [HttpPost]
@@ -238,18 +238,28 @@ namespace authority.Controllers
         [HttpGet]
         public ActionResult ArticleEdit(int id)
         {
-            return View();
+            ViewBag.Title2 = "文章管理-修改文章";
+            ViewBag.Article = true;
+            var ann = new DBC.Article(id);
+            ViewBag.article = ann;
+            return View("ArticleDetail");
         }
         [HttpPost]
         public ActionResult ArticleEdit(int id,string title,string content,string keywords)
         {
-            return View();
+            var ann = new DBC.Article(id);
+            ann.Title = title;
+            ann.Content = content;
+            ann.Keywords = keywords;
+            return Redirect("~/admin/Article");
         }
 
         //删除
         public ActionResult ArticleDelete(int id)
         {
-            return View();
+            var ann = new DBC.Article(id);
+            ann.Delete();
+            return Redirect("~/admin/article");
         }
         #endregion
 
