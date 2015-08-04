@@ -443,6 +443,7 @@
     <Content Include="Views\Admin\QnADetail.aspx" />
     <Content Include="Views\Admin\Role.aspx" />
     <Content Include="Views\Admin\RoleDetail.aspx" />
+    <Content Include="Views\Admin\User.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Partial1.ascx" />

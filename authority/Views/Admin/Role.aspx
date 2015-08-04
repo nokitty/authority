@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="body">
     <div class="clearfix">
-        <a href="/admin/rolecreate" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span><span>添加新角色</span></a>
+        <a href="/admin/roleadd" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span><span>新角色</span></a>
     </div>
 
     <table class="table">
@@ -20,8 +20,7 @@
             <td>
                 <table>
                     <tr>
-                        <td><a href="/admin/roleshow">查看</a></td>
-                        <td><a href="/admin/roleshow">删除</a></td>
+                        <td><a href="/admin/roledelete">删除</a></td>
                         <td><a href="/admin/roleedit">修改</a></td>
                     </tr>
                 </table>

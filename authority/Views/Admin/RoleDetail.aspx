@@ -25,7 +25,7 @@
                     <td><%=item.Name %></td>
                     <td><%=item.Description %></td>
                     <td>
-                        <input type="checkbox" name="<%=item.Code %>" /></td>
+                        <input type="checkbox" name="<%=item.Code %>"  checked=""/></td>
                 </tr>
                 <%
                   } %>
