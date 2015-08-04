@@ -26,7 +26,7 @@ namespace DBC
 
         protected abstract void Initialize(string filter, params object[] args);
 
-        public void Delete()
+        public virtual void Delete()
         {
             var sql = "delete from " + _tableName + " where id=?";
             DB.SExecuteNonQuery(sql, ID);

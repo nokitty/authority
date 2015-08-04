@@ -11,7 +11,7 @@
             <th>描述</th>
             <th>操作</th>
         </tr>
-        <%foreach (DBC.Role item in ViewBag.list)
+        <%foreach (DBC.Role item in ViewBag.roleList)
           {
         %>
         <tr>
@@ -20,8 +20,8 @@
             <td>
                 <table>
                     <tr>
-                        <td><a href="/admin/roledelete">删除</a></td>
-                        <td><a href="/admin/roleedit">修改</a></td>
+                        <td><a href="/admin/roledelete?id=<%=item.ID %>">删除</a></td>
+                        <td><a href="/admin/roleedit?id=<%=item.ID %>">修改</a></td>
                     </tr>
                 </table>
             </td>

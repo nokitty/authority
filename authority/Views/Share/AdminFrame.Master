@@ -1,18 +1,43 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage"  MasterPageFile="~/Views/Share/BootstrapFrame.Master" %>
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Share/BootstrapFrame.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="body">
-        <div class="container">
+    <%var user = Session["user"] as DBC.User; %>
+    <div class="container">
         <h2>后台管理主页</h2>
 
         <div class="row">
             <div class="col-lg-2">
                 <div class="list-group">
+                    <%if (AuthorityHelper.Check(user, "Role.Access"))
+                      { %>
                     <a class="list-group-item" href="/admin/role">角色管理</a>
-                    <a class="list-group-item" href="/admin/user">用户管理</a>
+                    <%}
+                      if (AuthorityHelper.Check(user, "User.Access"))
+                      { 
+                    %>
+                    <a class="list-group-item" href="/admin/users">用户管理</a>
+                    <%}
+                      if (AuthorityHelper.Check(user, "Report.Access"))
+                      { 
+                    %>
                     <a class="list-group-item" href="/admin/report">举报管理</a>
+                    <%}
+                      if (AuthorityHelper.Check(user, "Article.Access"))
+                      { 
+                    %>
                     <a class="list-group-item" href="/admin/article">资讯管理</a>
+                    <%}
+                      if (AuthorityHelper.Check(user, "Announcement.Access"))
+                      { 
+                    %>
                     <a class="list-group-item" href="/admin/announcement">公告管理</a>
+                    <%}
+                      if (AuthorityHelper.Check(user, "QnA.Access"))
+                      { 
+                    %>
                     <a class="list-group-item" href="/admin/qna">常见问题管理</a>
+                    <%} 
+                    %>
                 </div>
             </div>
             <div class="col-lg-10">

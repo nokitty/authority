@@ -19,10 +19,11 @@ namespace authority.Controllers
         }
 
         #region 角色管理
+        [AuthorityCheck("Role.Access")]
         public ActionResult Role()
         {
             ViewBag.Title2 = "角色管理";
-            var res = DB.SExecuteReader("select id from role");
+            var res = DB.SExecuteReader("select id from " + DBTables.Role);
             var list = new List<DBC.Role>();
             foreach (var item in res)
             {
@@ -35,46 +36,32 @@ namespace authority.Controllers
         }
 
         //添加
+        [AuthorityCheck("Role.Access")]
         [HttpGet]
         public ActionResult RoleAdd()
         {
             ViewBag.RoleCreate = true;
             ViewBag.Title2 = "角色管理-添加新角色";
 
-            var sql = "select id from " + DBTables.Authority;
-            var res = DB.SExecuteReader(sql);
-
-            var authorityList = new List<DBC.Authority>();
-            foreach (var item in res)
-            {
-                //获取权限名
-                var id = Convert.ToInt32(item[0]);
-                authorityList.Add(new DBC.Authority(id));
-            }
-
-            ViewBag.athorityList = authorityList;
+            ViewBag.athorityList = AuthorityHelper.AuthorityList;
             return View("roledetail");
         }
+        [AuthorityCheck("Role.Access")]
         [HttpPost]
-        public ActionResult RoleAdd(FormCollection collection)
+        public ActionResult RoleAdd(string name,string description)
         {
-            var name = Request.Form["name"];
-            var description = Request.Form["description"];
             var role = DBC.Role.Create(name, description);
-
-            var sql = "select code from " + DBTables.Authority;
-            var res = DB.SExecuteReader(sql);
-            foreach (var item in res)
+            foreach (var item in AuthorityHelper.AuthorityList)
             {
-                var code = (string)item[0];
-                role.SetAuthority();
-                //var value = Request.Form[code];
+                var code = item.Code;
+                var value = string.IsNullOrWhiteSpace(Request.Form[code]) ? true : false;
+                role.SetAuthority(code, value);
             }
-
-            return View();
+            return Redirect("~/admin/role");
         }
 
         //编辑
+        [AuthorityCheck("Role.Access")]
         [HttpGet]
         public ActionResult RoleEdit(int id)
         {
@@ -82,77 +69,103 @@ namespace authority.Controllers
             ViewBag.RoleEdit = true;
 
             var role = new DBC.Role(id);
-
-            var sql = "select id from " + DBTables.Authority;
-            var res = DB.SExecuteReader(sql);
-
-            var authorityList = new List<DBC.Authority>();
-            foreach (var item in res)
-            {
-                //获取权限名
-                var authorityId = Convert.ToInt32(item[0]);
-               var authority=new DBC.Authority(authorityId);
-                authorityList.Add(authority);
-
-                //获取权限值
-                var res1 = DB.SExecuteScalar("select value from " + DBTables.RoleAuthority + " where authorityid=? and roleid=?", authorityId, role.ID);
-                ViewData[]
-            }
-
-            ViewBag.athorityList = authorityList;    
+            ViewBag.role = role;
+            ViewBag.athorityList = AuthorityHelper.AuthorityList;
 
             return View("roledetail");
         }
 
-
+        [AuthorityCheck("Role.Access")]
         [HttpPost]
-        public ActionResult RoleEdit()
+        public ActionResult RoleEdit(int id, FormCollection form)
         {
-
-            return View("roledetail");
+            var role = new DBC.Role(id);
+            foreach (var item in AuthorityHelper.AuthorityList)
+            {
+                var value = string.IsNullOrWhiteSpace(form[item.Code]) ? false : true;
+                role.SetAuthority(item.Code, value);
+            }
+            return Redirect("~/admin/role");
         }
-
+        //删除
+        [AuthorityCheck("Role.Access")]
         public ActionResult RoleDelete(int id)
         {
-            return View();
+            var role = new DBC.Role(id);
+            role.Delete();
+            return Redirect("~/admin/role");
         }
         #endregion
 
         #region 用户管理
         //显示用户列表，显示用户所属角色
+        [AuthorityCheck("User.Access")]
         public ActionResult Users()
         {
-            //to do here
+            ViewBag.Title2 = "用户管理";
+            var list = new List<DBC.User>();
+            var sql="select id from "+DBTables.User;
+            var res = DB.SExecuteReader(sql);
+            foreach (var item in res)
+            {
+                var user = new DBC.User(Convert.ToInt32(item[0]));
+                list.Add(user);
+            }
+
+            ViewBag.userList = list;
             return View();
         }
+
         //修改用户所属角色，其他不能修改
+        [AuthorityCheck("User.Access")]
         [HttpGet]
         public ActionResult UsersEdit(int id)
         {
-            //to do here
-            return View();
+            var user = new DBC.User(id);
+            ViewBag.user = user;
+            return View("usersdetail");
         }
+        [AuthorityCheck("User.Access")]
         [HttpPost]
-        public ActionResult UsersEdit()
+        public ActionResult UsersEdit(int id,FormCollection form)
         {
-            //to do here
-            return View();
+            var user = new DBC.User(id);
+            foreach (var role in AuthorityHelper.RoleList)
+            {
+                var value = string.IsNullOrWhiteSpace(form["role_" + role.ID]);
+                if(value==false)
+                {
+                    //添加
+                    var sql = "insert ignore into " + DBTables.UserRole + " (userid,roleid) values (?,?)";
+                    DB.SExecuteNonQuery(sql, user.ID, role.ID);
+                }
+                else
+                {
+                    //删除
+                    var sql = "delete from " + DBTables.UserRole + " where userid=? and roleid=? ";
+                    DB.SExecuteNonQuery(sql, user.ID, role.ID);
+                }
+            }
+            return Redirect("~/admin/users");
         }
 
         #endregion
 
         #region 举报管理
+        [AuthorityCheck("Report.Access")]
         public ActionResult Report()
         {
             return View();
         }
 
         //修改（只能修改审核状态，其他信息不能修改）
+        [AuthorityCheck("Report.Access")]
         [HttpGet]
         public ActionResult ReportEdit(int id)
         {
             return View();
         }
+        [AuthorityCheck("Report.Access")]
         [HttpPost]
         public ActionResult ReportEdit(int id, ReportedPersonCheckStates state)
         {
@@ -160,6 +173,7 @@ namespace authority.Controllers
         }
 
         //删除
+        [AuthorityCheck("Report.Access")]
         public ActionResult ReportDelete(int id)
         {
             return View();
@@ -167,6 +181,7 @@ namespace authority.Controllers
         #endregion
 
         #region 公告管理
+        [AuthorityCheck("Announcement.Access")]
         public ActionResult Announcement()
         {
             ViewBag.Title2 = "公告管理";
@@ -181,6 +196,8 @@ namespace authority.Controllers
             return View();
         }
 
+        //添加
+        [AuthorityCheck("Announcement.Access")]
         [HttpGet]
         public ActionResult AnnouncementAdd()
         {
@@ -189,6 +206,7 @@ namespace authority.Controllers
 
             return View("antwrite");
         }
+        [AuthorityCheck("Announcement.Access")]
         [HttpPost]
         public ActionResult AnnouncementAdd(string title, string content)
         {
@@ -196,6 +214,9 @@ namespace authority.Controllers
 
             return Redirect("~/admin/Announcement");
         }
+
+        //修改
+        [AuthorityCheck("Announcement.Access")]
         [HttpGet]
         public ActionResult AnnouncementEdit(int id)
         {
@@ -206,7 +227,7 @@ namespace authority.Controllers
             ViewBag.announcement = ann;
             return View("antwrite");
         }
-
+        [AuthorityCheck("Announcement.Access")]
         [HttpPost]
         public ActionResult AnnouncementEdit(int id, string title, string content)
         {
@@ -216,6 +237,8 @@ namespace authority.Controllers
             return Redirect("~/admin/Announcement");
         }
 
+        //删除
+        [AuthorityCheck("Announcement.Access")]
         public ActionResult AnnouncementDelete(int id)
         {
             var ann = new DBC.Announcement(id);
@@ -226,6 +249,7 @@ namespace authority.Controllers
         #endregion
 
         #region 文章管理
+        [AuthorityCheck("Article.Access")]
         public ActionResult Article()
         {
             ViewBag.Title2 = "文章管理";
@@ -240,6 +264,7 @@ namespace authority.Controllers
             return View();
         }
         //添加
+        [AuthorityCheck("Article.Access")]
         [HttpGet]
         public ActionResult ArticleAdd()
         {
@@ -247,6 +272,7 @@ namespace authority.Controllers
             ViewBag.Title2 = "文章管理-添加文章";
             return View("ArticleDetail");
         }
+        [AuthorityCheck("Article.Access")]
         [HttpPost]
         public ActionResult ArticleAdd(string title, string content, string keywords)
         {
@@ -256,6 +282,7 @@ namespace authority.Controllers
         }
 
         //修改
+        [AuthorityCheck("Article.Access")]
         [HttpGet]
         public ActionResult ArticleEdit(int id)
         {
@@ -265,6 +292,7 @@ namespace authority.Controllers
             ViewBag.article = ann;
             return View("ArticleDetail");
         }
+        [AuthorityCheck("Article.Access")]
         [HttpPost]
         public ActionResult ArticleEdit(int id, string title, string content, string keywords)
         {
@@ -277,6 +305,7 @@ namespace authority.Controllers
         }
 
         //删除
+        [AuthorityCheck("Article.Access")]
         public ActionResult ArticleDelete(int id)
         {
             var ann = new DBC.Article(id);
@@ -286,6 +315,7 @@ namespace authority.Controllers
         #endregion
 
         #region 常见问题管理
+        [AuthorityCheck("QnA.Access")]
         public ActionResult QnA()
         {
             ViewBag.Title2 = "常见问题管理";
@@ -301,6 +331,7 @@ namespace authority.Controllers
         }
 
         //添加
+        [AuthorityCheck("QnA.Access")]
         [HttpGet]
         public ActionResult QnAAdd()
         {
@@ -308,6 +339,7 @@ namespace authority.Controllers
             ViewBag.Title2 = "常见问题管理-添加问题";
             return View("qnadetail");
         }
+        [AuthorityCheck("QnA.Access")]
         [HttpPost]
         public ActionResult QnAAdd(string question, string answer)
         {
@@ -317,6 +349,7 @@ namespace authority.Controllers
         }
 
         //修改
+        [AuthorityCheck("QnA.Access")]
         [HttpGet]
         public ActionResult QnAEdit(int id)
         {
@@ -327,6 +360,7 @@ namespace authority.Controllers
             ViewBag.qna = ann;
             return View("qnadetail");
         }
+        [AuthorityCheck("QnA.Access")]
         [HttpPost]
         public ActionResult QnAEdit(int id, string question, string answer)
         {
@@ -337,6 +371,7 @@ namespace authority.Controllers
         }
 
         //删除
+        [AuthorityCheck("QnA.Access")]
         public ActionResult QnADelete(int id)
         {
             var ann = new DBC.QnA(id);

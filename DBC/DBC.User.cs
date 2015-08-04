@@ -28,7 +28,6 @@ namespace DBC
                 throw new Exception("已经创建过用户");
             }
         }
-
         protected override void Initialize(string filter, params object[] args)
         {
             var sql = "select id,name,tel,password from " + DBTables.User + " where "+filter;
@@ -42,6 +41,24 @@ namespace DBC
             Name = (string)row[1];
             Tel = (string)row[2];
             Password = (string)row[3];
+        }
+        public List<DBC.Role> GetRoles()
+        {
+            var list = new List<DBC.Role>();
+
+            var sql = "select roleid from " + DBTables.UserRole + " where userid=?";
+            var res = DB.SExecuteReader(sql, ID);
+
+            foreach (var item in res)
+            {
+                try
+                {
+                    var auth = new DBC.Role(Convert.ToInt32(item[0]));
+                    list.Add(auth);
+                }
+                catch { }
+            }
+            return list;
         }
     }
 }
