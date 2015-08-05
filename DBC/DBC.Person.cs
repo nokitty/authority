@@ -32,7 +32,7 @@ namespace DBC
 
         override protected void Initialize(string filter, params object[] args)
         {
-            var sql = "select id,name ,cardnum,province,city from " + _tableName + " where " + filter;
+            var sql = "select id,name ,cardnum,province,city from " + DBTables.Person + " where " + filter;
             var res = DB.SExecuteReader(sql, args);
 
             if (res.Count == 0)

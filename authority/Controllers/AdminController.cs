@@ -124,6 +124,15 @@ namespace authority.Controllers
         #region 举报管理
         public ActionResult Report()
         {
+            ViewBag.Title2 = "举报管理";
+            var res = DB.SExecuteReader("select id from "+DBTables.ReportedPerson);
+            var list = new List<DBC.ReportedPerson>();
+            foreach (var item in res)
+            {
+                var id = Convert.ToInt32(item[0]);
+                list.Add(new DBC.ReportedPerson(id));
+            }
+            ViewBag.list = list;
             return View();
         }
 
@@ -131,18 +140,26 @@ namespace authority.Controllers
         [HttpGet]
         public ActionResult ReportEdit(int id)
         {
-            return View();
+            ViewBag.Title2 = "审核管理-审核验证";
+            var ann = new DBC.ReportedPerson(id);
+            ViewBag.reportedperson = ann;
+            return View("Check");
         }
         [HttpPost]
         public  ActionResult ReportEdit(int id,ReportedPersonCheckStates state)
         {
-            return View();
+            
+            var ann = new DBC.ReportedPerson(id);
+            ann.CheckState =(byte) state;
+            return Redirect("~/admin/Report");
         }
 
         //删除
         public ActionResult ReportDelete(int id)
         {
-            return View();
+            var ann = new DBC.ReportedPerson(id);
+            ann.Delete();
+            return Redirect("~/admin/Report");
         }
         #endregion
 
