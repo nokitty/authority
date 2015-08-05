@@ -437,10 +437,12 @@
     <Content Include="Views\Admin\Antwrite.aspx" />
     <Content Include="Views\Admin\Article.aspx" />
     <Content Include="Views\Admin\ArticleDetail.aspx" />
+    <Content Include="Views\Admin\Check.aspx" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Admin\Login.aspx" />
     <Content Include="Views\Admin\QnA.aspx" />
     <Content Include="Views\Admin\QnADetail.aspx" />
+    <Content Include="Views\Admin\Report.aspx" />
     <Content Include="Views\Admin\Role.aspx" />
     <Content Include="Views\Admin\RoleDetail.aspx" />
     <Content Include="Views\Admin\UsersDetail.aspx" />
