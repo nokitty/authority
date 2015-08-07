@@ -1,0 +1,19 @@
+.container {
+  padding: 0;
+}
+.header {
+  position: fixed;
+  background: -webkit-linear-gradient(#c90832, #b0072c 50%, #980626);
+  background: linear-gradient(#c90832, #b0072c 50%, #980626);
+  color: #fff;
+  height: 42px;
+  line-height: 42px;
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+}
+.header .icon {
+  width: 42px;
+  text-align: center;
+  cursor: pointer;
+}

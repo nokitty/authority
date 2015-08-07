@@ -53,11 +53,11 @@ namespace DBC
             Answer = (string)row[2];
             CreateTime = Convert.ToDateTime(row[3]);
         }
-        public static Announcement Create(string question, string answer)
+        public static QnA Create(string question, string answer)
         {
             var sql = "insert into " + DBTables.QnA + " (question,answer,createtime) values (?,?,?)";
             var id = DB.SInsert(sql, question, answer, DateTime.Now);
-            return new Announcement(id);
+            return new QnA(id);
         }
     }
 }
