@@ -5,21 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="/css/base.css" />
 
-<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="/css/index.css" />
 
-<script type="text/javascript" src="js/JQuery.js"></script>
+<script type="text/javascript" src="/js/JQuery.js"></script>
 
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 
-<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
 
-<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
 
-<script type="text/javascript" src="js/law.js"></script>
+<script type="text/javascript" src="/js/law.js"></script>
 
-<script type="text/javascript" src="js/top.js"></script>
+<script type="text/javascript" src="/js/top.js"></script>
 
 <script  type="text/javascript">
 
@@ -53,10 +53,10 @@
     
         <div class="header_Nav">
         
-            <img src="images/logo2.png"/>
+            <img src="/images/logo2.png"/>
             
             <ul>
-                <li class="cur"><a  href="#">首页</a></li>
+                <li class="cur"><a href="/">首页</a></li>
                 
                 <li><a href="#" >信用查询</a></li>
                 
@@ -69,9 +69,9 @@
             
             <div class="login">
             
-                <a>登陆</a>/
+                <a href="/login">登陆</a>/
                 
-                <a>注册</a>
+                <a href="/signup">注册</a>
             
             </div>
             
@@ -372,7 +372,7 @@
    
             <div class="search">
 
-                <img src="images/guofenchaxun.png" />
+                <img src="/images/guofenchaxun.png" />
       
                 <div class="tips-out-wrap">
                 
@@ -461,183 +461,52 @@
         
         <div class="fl adv_indus">
         
-            <h3><span class="fr more2"><a href="#" target="_blank">更多</a></span>行业咨询</h3>
+            <h3><span class="fr more2"><a href="/news/list" target="_blank">更多</a></span>行业咨询</h3>
             
             <ul class="adv_indus_content">
-            
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                    <img alt="新" src="images/new3.gif">
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                    <img alt="新" src="images/new3.gif">
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-                
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-                
-                <li >
-                
-                    <span class="fr">2015-07-22</span>
-                    
-                    <a href="#" target="_blank" title="">投资网上理财要坚守以下几条规则......</a>
-                    
-                </li>
-            
+                <%foreach (DBC.Article item in ViewBag.articlelist)
+                  {
+                      %>
+                     <li >                 
+                    <span class="fr"><%=DateTime.Now.ToString("yyyy年MM月dd日")%></span>
+                    <a href="/news/details?id=<%=item.ID %>" target="_blank" title=""><%=item.Title %></a>  
+                    <img alt="新" src="/images/new3.gif">                  
+                </li>  
+                    <%
+                  } %>                            
             </ul>
         
         </div>
         
         <div class="fl adv_indus">
         
-            <h3><span class="fr more2"><a href="Services/BulletinList.aspx" target="_blank">更多</a></span>公司公告</h3>
+            <h3><span class="fr more2"><a href="/announcement/list" target="_blank">更多</a></span>公司公告</h3>
             
             <ul class="adv_indus_content">
-            
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
+                <% foreach (DBC.Announcement item in ViewBag.announcementlist)
+                   {
+                     %>
+                    <li>                    
+                    <span class="fr"><%=DateTime.Now.ToString("yyyy年MM月dd日")%></span>                    
+                    <a href="/announcement/details?id=<%=item.ID %>"><%=item.Title %>></a>
                 
                 </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-                
-                <li>
-                    
-                    <span class="fr">2015-07-20</span>
-                    
-                    <a href="Services/BulletinDetail.aspx?id=186" title="新产品即将推出">新产品即将推出</a>
-                
-                </li>
-            
+                    <%
+                   }   %>   
             </ul>
         
         </div>
         
         <div class=" fr adv_faq">
         
-            <h3><span class="fr more2"><a href="Services/BulletinList.aspx" target="_blank">更多</a></span>常见问题与解答</h3>
+            <h3><span class="fr more2"><a href="/qna/list" target="_blank">更多</a></span>常见问题与解答</h3>
             
             <div id="ulOrderAnns">
                 <div class="adv_faq_content">
                 <%foreach (DBC.QnA item in ViewBag.qnaList)
                   {
                       %>
-                                          <dl>
+                    <dl>
                         <dt><span><a href="#" looyu_bound="1">
                             <%=item.Question %></a></span></dt>
                         <dd><span><%=item.Answer %></span></dd>
@@ -668,7 +537,7 @@
     
     <div class="link clearfix">
     
-    <h3><a href="#" title="友情链接" target="_blank" looyu_bound="1"><img src="images/link.gif"></a></h3>
+    <h3><a href="#" title="友情链接" target="_blank" looyu_bound="1"><img src="/images/link.gif"></a></h3>
     
     <div class="link-con clearfix">
         
@@ -768,7 +637,7 @@
     
             <span style="padding-right:15px;">版权所有&copy;2012千久汇电子商务有限公司</span>
     
-            <span>闽ICP备12018362号-3</span>
+            <span>粤ICP备15069453号</span>
     
         </div>
     

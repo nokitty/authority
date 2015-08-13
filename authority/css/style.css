@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 
@@ -509,7 +509,7 @@ margin-top: 3px;}
 
 height: 31px;line-height: 31px; padding-left:24px; margin-top:20px; font-size:18px; color:#AF072B;padding-right: 28px;}
 
-.news_listR1{ float:left;border: 1px solid #cccccc; padding:0 10px;}
+.news_listR1{ border: 1px solid #cccccc; padding:0 10px;}
 
 .news_listR1 h4 b{ float:right; color:#666666; font-size:12px; font-family:'宋体'; font-weight:100;}
 

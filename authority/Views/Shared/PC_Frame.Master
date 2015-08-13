@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server" />
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style1.css" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/law.js"></script>
+
+    <asp:ContentPlaceHolder runat="server" ID="script"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <%=Html.Partial("pc_header") %>
+    <asp:ContentPlaceHolder runat="server" ID="body"></asp:ContentPlaceHolder>
+    <%=Html.Partial("pc_footer") %>
+</body>
+</html>

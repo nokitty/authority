@@ -33,7 +33,7 @@ namespace authority.Controllers
                     return Content("该用户名已经被注册");
                 }
             }
-            return View();
+            return View("pc_regist");
         }
 
     }

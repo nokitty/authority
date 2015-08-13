@@ -125,10 +125,13 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\QnAController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -567,10 +570,20 @@
     <Content Include="Views\Admin\RoleDetail.aspx" />
     <Content Include="Views\Admin\UsersDetail.aspx" />
     <Content Include="Views\Admin\Users.aspx" />
+    <Content Include="Views\Announcement\Test_Details.aspx" />
+    <Content Include="Views\Announcement\Test_list.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Login\Index.aspx" />
+    <Content Include="Views\Login\PC_login.aspx" />
+    <Content Include="Views\News\Test_Details.aspx" />
+    <Content Include="Views\News\Test_list.aspx" />
     <Content Include="Views\Partial1.ascx" />
+    <Content Include="Views\QnA\list.aspx" />
+    <Content Include="Views\QnA\Test_list.aspx" />
+    <Content Include="Views\Shared\PC_footer.ascx" />
+    <Content Include="Views\Shared\PC_Header.ascx" />
     <Content Include="Views\Signup\Index.aspx" />
+    <Content Include="Views\Signup\PC_Regist.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -587,18 +600,12 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Share\BootstrapFrame.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Share\AdminFrame.Master" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBC\DBC.csproj">
@@ -615,6 +622,15 @@
     <Content Include="Ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Ueditor\third-party\video-js\font\vjs.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Share\AdminFrame.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Share\BootstrapFrame.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PC_Frame.Master" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
